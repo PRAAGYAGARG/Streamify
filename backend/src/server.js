@@ -16,8 +16,9 @@ const PORT = process.env.PORT;
 
 const __dirname = path.resolve();
 
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json()); // Allows server to read JSON data from requests body,  Needed for:signup, login , API request, etc
+app.use(cookieParser()); //Allows server to read cookies using req.cookies which is 
+// necessary as in middleware we want jwt token from cookie so req.cookies.jwt
 
 
 app.use(

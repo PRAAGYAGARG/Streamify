@@ -106,12 +106,12 @@ export async function onboard(req, res) {
   try {
     const userId = req.user._id;
 
-    const { fullName, bio, nativeLanguage, learningLanguage, location } = req.body;
-
+    const { fullName, bio, nativeLanguage, learningLanguage, location } = req.body; //Reads user-submitted onboarding form data
+ 
     if (!fullName || !bio || !nativeLanguage || !learningLanguage || !location) {
       return res.status(400).json({
         message: "All fields are required",
-        missingFields: [
+        missingFields: [              //Tells frontend exactly which fields are missing
           !fullName && "fullName",
           !bio && "bio",
           !nativeLanguage && "nativeLanguage",
@@ -119,13 +119,13 @@ export async function onboard(req, res) {
           !location && "location",
         ].filter(Boolean),
       });
-    }
+    } 
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       {
         ...req.body,
-        isOnboarded: true,
+        isOnboarded: true,  
       },
       { new: true }
     );

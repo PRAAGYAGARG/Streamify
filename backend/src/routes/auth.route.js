@@ -8,7 +8,8 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 
-router.post("/onboarding", protectRoute, onboard);
+router.post("/onboarding", protectRoute, onboard); 
+//protect as only users who are authenticated should be able to visit
 
 // check if user is logged in
 router.get("/me", protectRoute, (req, res) => {

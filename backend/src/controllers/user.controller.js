@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import FriendRequest from "../models/FriendRequest.js";
 
+//Home pg par friends recommendations under Meet new Learners heading
 export async function getRecommendedUsers(req, res) {
   try {
     const currentUserId = req.user.id;
@@ -20,6 +21,7 @@ export async function getRecommendedUsers(req, res) {
   }
 }
 
+//Home pg par current user friends under Your friends heading
 export async function getMyFriends(req, res) {
   try {
     const user = await User.findById(req.user.id)
@@ -32,7 +34,8 @@ export async function getMyFriends(req, res) {
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
-
+ 
+// creates a friend request , not pg specific
 export async function sendFriendRequest(req, res) {
   try {
     const myId = req.user.id;
@@ -67,11 +70,12 @@ export async function sendFriendRequest(req, res) {
         .json({ message: "A friend request already exists between you and this user" });
     }
 
+    //finally create request
     const friendRequest = await FriendRequest.create({
       sender: myId,
       recipient: recipientId,
     });
-
+    //returning friendRequest in friendRequest variable
     res.status(201).json(friendRequest);
   } catch (error) {
     console.error("Error in sendFriendRequest controller", error.message);
@@ -79,6 +83,7 @@ export async function sendFriendRequest(req, res) {
   }
 }
 
+//accept friend req , not pg specific
 export async function acceptFriendRequest(req, res) {
   try {
     const { id: requestId } = req.params;
@@ -97,9 +102,9 @@ export async function acceptFriendRequest(req, res) {
     friendRequest.status = "accepted";
     await friendRequest.save();
 
-    // add each user to the other's friends array
+    // add each user id to the other's friends array
     // $addToSet: adds elements to an array only if they do not already exist.
-    await User.findByIdAndUpdate(friendRequest.sender, {
+    await User.findByIdAndUpdate(friendRequest.sender, { //adding recepient to sender friends list
       $addToSet: { friends: friendRequest.recipient },
     });
 
@@ -114,17 +119,20 @@ export async function acceptFriendRequest(req, res) {
   }
 }
 
+//Notifications page
 export async function getFriendRequests(req, res) {
   try {
+    //Under Friend Requests section
     const incomingReqs = await FriendRequest.find({
       recipient: req.user.id,
-      status: "pending",
-    }).populate("sender", "fullName profilePic nativeLanguage learningLanguage");
+      status: "pending",  //showing req jinka status pending hai
+    }).populate("sender", "fullName profilePic nativeLanguage learningLanguage"); //showing sender ki details 
 
+    //Under New connections section
     const acceptedReqs = await FriendRequest.find({
       sender: req.user.id,
       status: "accepted",
-    }).populate("recipient", "fullName profilePic");
+    }).populate("recipient", "fullName profilePic"); //showing recipient ki pfp,name  
 
     res.status(200).json({ incomingReqs, acceptedReqs });
   } catch (error) {
@@ -133,6 +141,7 @@ export async function getFriendRequests(req, res) {
   }
 }
 
+//Home pg par after pressing "Send Friend Request" we should see "Request sent" ie updating UI
 export async function getOutgoingFriendReqs(req, res) {
   try {
     const outgoingRequests = await FriendRequest.find({
