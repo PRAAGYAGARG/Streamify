@@ -1,7 +1,3 @@
-Got it — clean and professional, no flashy elements. Here’s a refined README 👇
-
----
-
 # Streamify – Real-time Social & Video Chat Platform
 
 Streamify is a scalable MERN-based application that enables users to connect through real-time messaging and video calling. The platform focuses on secure communication, efficient state management, and a responsive user experience.
@@ -137,5 +133,3 @@ npm start
 * Advanced chat features
 
 
-
-If you want, I can also make a **1-page resume version of this (very high impact)** or a **GitHub README that recruiters skim in 10 seconds**.
