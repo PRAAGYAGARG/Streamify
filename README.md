@@ -1,58 +1,141 @@
-# Streamify – Scalable MERN-based Social & Video Chat Platform
-
-Streamify is a full-stack social platform that combines **real-time chat**, **video calling**, and a rich **friends & onboarding system**.  
-It’s built on the MERN stack with WebRTC and Socket.io for low-latency communication and is structured to be production-ready and easily extensible.
+Got it — clean and professional, no flashy elements. Here’s a refined README 👇
 
 ---
 
-## ✨ Key Features
+# Streamify – Real-time Social & Video Chat Platform
 
-- 💻 **Tech Stack:** Node.js, Express, MongoDB, React, TanStack Query, TailwindCSS, WebRTC, Socket.io, Stream
-- 🔐 **Authentication:** JWT-based login and signup with protected routes and persistent sessions
-- 🚶 **Onboarding Flow:** Guided onboarding to set up profile, interests, and recommendations
-- 👥 **Friends System:** Send requests, accept/decline, and view recommended users & friends
-- 💬 **Real-Time Chat:** 1-to-1 messaging with instant updates via Socket.io
-- 🎥 **Video Calling:** WebRTC-based video calls between connected users
-- 🎨 **32+ UI Themes:** Built-in theme selector for highly customizable look & feel
-- 🧩 **Custom Hooks & Best Practices:** Clean separation of concerns on both frontend and backend
-- 🧪 **API Testing:** Structured endpoints tested for reliability and correctness
-- 🚀 **Deployment Ready:** Backend prepared for deployment (e.g., Render) and frontend easily hostable
+Streamify is a scalable MERN-based application that enables users to connect through real-time messaging and video calling. The platform focuses on secure communication, efficient state management, and a responsive user experience.
 
 ---
 
-## 🧱 Tech Stack
+## Features
+
+* Real-time messaging with instant updates
+* Video calling functionality
+* Secure authentication using JWT
+* Friend system for managing connections
+* Multiple UI themes for customization
+* Efficient state management using TanStack Query and Zustand
+* Responsive design for different screen sizes
+* Notification system for better user interaction
+
+---
+
+## Tech Stack
 
 **Frontend**
-- React
-- TanStack Query (for server state/data fetching)
-- TailwindCSS
-- Custom hooks & reusable components
+
+* React.js
+* TailwindCSS
+* DaisyUI
+* Zustand
+* TanStack Query
+* React Hot Toast
 
 **Backend**
-- Node.js
-- Express.js
-- MongoDB (Mongoose)
-- JWT authentication
 
-**Real-Time & Media**
-- Socket.io (real-time messaging & signaling)
-- WebRTC (peer-to-peer video)
-- Stream (video/chat infrastructure where applicable)
+* Node.js
+* Express.js
+
+**Database**
+
+* MongoDB
+
+**Tools and Services**
+
+* Stream
+* Bcrypt.js
+* JWT
+* Git and GitHub
+* Postman
 
 ---
 
-## 📂 Project Structure (example)
+## Project Structure
+
+```
+Streamify/
+│
+├── frontend/        # React frontend
+├── backend/         # Express server
+├── config/          # Configuration files
+├── controllers/     # Application logic
+├── routes/          # API routes
+├── models/          # Database schemas
+└── utils/           # Helper utilities
+```
+
+---
+
+## Installation and Setup
+
+### Clone the repository
 
 ```bash
-streamify/
-├── backend/           # Express + MongoDB API, auth, friends, chat, calls
-│   ├── src/
-│   ├── tests/
-│   └── ...
-└── frontend/          # React + TanStack Query + Tailwind UI
-    ├── src/
-    │   ├── pages/     # Login, signup, onboarding, chat, calls, notifications
-    │   ├── components/
-    │   ├── hooks/
-    │   └── context/
-    └── ...
+git clone https://github.com/your-username/streamify.git
+cd streamify
+```
+
+### Install dependencies
+
+```bash
+cd frontend
+npm install
+
+cd ../backend
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the backend directory:
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+STREAM_API_KEY=your_stream_key
+STREAM_API_SECRET=your_stream_secret
+```
+
+---
+
+## Running the Application
+
+```bash
+# start backend
+npm run dev
+
+# start frontend
+npm start
+```
+
+---
+
+## Authentication
+
+* Passwords are securely hashed using Bcrypt
+* JWT is used for session management
+* Protected routes are handled via middleware
+
+---
+
+## Scalability Considerations
+
+* Modular backend architecture
+* Optimized data fetching with TanStack Query
+* Lightweight global state using Zustand
+* Separation of concerns for maintainability
+
+---
+
+## Future Enhancements
+
+* Group video calling
+* File and media sharing
+* Push notifications
+* Advanced chat features
+
+
+
+If you want, I can also make a **1-page resume version of this (very high impact)** or a **GitHub README that recruiters skim in 10 seconds**.
